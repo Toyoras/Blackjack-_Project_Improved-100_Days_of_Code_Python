@@ -1,13 +1,12 @@
 from player import cards_dictionnary
-from useful_functions import UsefulFunctions
+from useful_functions import get_valid_balance, get_valid_bid, get_valid_input_text
 
 class Game:
     """Manages the complete flow of the game"""
-    def __init__(self, player, computer, bank, validator):
+    def __init__(self, player, computer, bank):
         self.player = player
         self.computer = computer
         self.bank = bank
-        self.validator = validator
        
     def display_hand_and_score(self):
         """Displays messages for game rounds"""
@@ -20,7 +19,7 @@ class Game:
 
     def start_round(self, deck):
         """Initial function of the game launch"""
-        bid = self.validator.get_valid_bid(self.bank.balance, f"\nHow much do you want to bid ? (Your bank account have ${self.bank.balance})\n$")
+        bid = get_valid_bid(self.bank.balance, f"\nHow much do you want to bid ? (Your bank account have ${self.bank.balance})\n$")
         self.player.draw_initial_cards(deck)
         self.computer.draw_initial_cards(deck)
         self.display_hand_and_score()
@@ -73,11 +72,11 @@ class Game:
             else: 
                 print(f"\nYour total win for this game are ${balance_update - total_balance} with a number of {refill_count} refill of your bank account\nYour actual bank account is now at ${balance_update}\nPlease re-run the file to play again\nHave a great day!")
 
-        replay_choice = self.validator.get_valid_input_text("\nDo you want to replay ? Type 'yes' or 'no'\n")
+        replay_choice = get_valid_input_text("\nDo you want to replay ? Type 'yes' or 'no'\n")
         if replay_choice and self.bank.balance < 1:
             print("\n" * 50)
-            if self.validator.get_valid_input_text("Your account level is too low, do you want to refill or stop ? Type 'yes' to refill and 'no' to stop\n"):
-                refill_amount = self.validator.get_valid_balance("\nPut the amount of refill\n$")
+            if get_valid_input_text("Your account level is too low, do you want to refill or stop ? Type 'yes' to refill and 'no' to stop\n"):
+                refill_amount = get_valid_balance("\nPut the amount of refill\n$")
                 self.bank.refill(refill_amount)
                 total_balance += refill_amount
                 refill_count += 1
