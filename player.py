@@ -1,15 +1,14 @@
 import random
-from useful_functions import UsefulFunctions
+from useful_functions import get_valid_input_text
 
 cards_dictionnary = {"A":[1,11],"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8,"9":9,"10":10,"J":10,"Q":10,"K":10}
 
 class Player:
     """Represents a player"""
-    def __init__(self, name, is_computer, validator):
+    def __init__(self, name, is_computer):
         self.hand = []
         self.name = name
         self.is_computer = is_computer
-        self.validator = validator
 
     def draw_initial_cards(self, deck):
         """Draw the first cards"""
@@ -39,7 +38,7 @@ class Player:
             if self.calculate_score() < 17:
                 return True
         else:
-            what_to_do = self.validator.get_valid_input_text("\nType 'yes' to get another card, type 'no' to pass\n")
+            what_to_do = get_valid_input_text("\nType 'yes' to get another card, type 'no' to pass\n")
             if what_to_do: 
                 return True
             else:
