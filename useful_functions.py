@@ -1,4 +1,4 @@
-def get_valid_input_text(self, text):
+def get_valid_input_text(text):
     """Check that text inputs are valid"""
     while True:
         try:
@@ -12,7 +12,7 @@ def get_valid_input_text(self, text):
         except Exception as e:
             print(f"\nAn error occurred: {e}, please enter 'yes' or 'no'")
 
-def get_valid_balance(self, bank_amount_text):
+def get_valid_balance(bank_amount_text):
     """Check that balance inputs are valid"""
     while True:
         try:
@@ -25,7 +25,7 @@ def get_valid_balance(self, bank_amount_text):
         except Exception as e:
             print(f"\nAn error occurred: {e}, please enter a valid amount")
 
-def get_valid_bid(self, balance, bid_amount_text):
+def get_valid_bid(balance, bid_amount_text):
     """Check that bid inputs are valid"""
     while True:
         try:
