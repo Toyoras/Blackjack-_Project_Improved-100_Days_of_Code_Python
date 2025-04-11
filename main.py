@@ -1,11 +1,9 @@
-# ----- Imports -----
 from art import logo
 from player import Player, cards_dictionnary
 from bank import Bank
 from game import Game
 from useful_functions import UsefulFunctions
 
-# ----- Main -----
 def main():
     """Main function"""
     validator = UsefulFunctions()
@@ -32,6 +30,5 @@ def main():
             game.computer_turn(deck)
             game_start, refill_count, total_balance = game.wants_replay(refill_count, total_balance, balance_update=game.compare_scores(bid_amount))
 
-# ----- Launching game -----
 if __name__ == "__main__":
     main()
