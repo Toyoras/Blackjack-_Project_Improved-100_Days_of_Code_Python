@@ -2,16 +2,15 @@ from art import logo
 from player import Player, cards_dictionnary
 from bank import Bank
 from game import Game
-from useful_functions import UsefulFunctions
+from useful_functions import get_valid_input_text, get_valid_balance
 
 def main():
     """Main function"""
-    validator = UsefulFunctions()
-    game_start = validator.get_valid_input_text("Do you want to play a game of Blackjack ? Type 'yes' or 'no'\n")
+    game_start = get_valid_input_text("Do you want to play a game of Blackjack ? Type 'yes' or 'no'\n")
     if game_start:
         print(logo)
         player_name = input("What's your name ?\n")
-        initial_balance = validator.get_valid_balance("\nHow much do you want to put in bank ?\n$")
+        initial_balance = get_valid_balance("\nHow much do you want to put in bank ?\n$")
         total_balance = initial_balance
         bank = Bank(initial_balance)
         refill_count = 0
@@ -19,9 +18,9 @@ def main():
         print("\nHave a good day, re-run the script to play")
     while game_start:
         deck = list(cards_dictionnary.keys())
-        irl_player = Player(player_name, False, validator)
-        computer = Player("Computer", True, validator)
-        game = Game(irl_player, computer, bank, validator)
+        irl_player = Player(player_name, False)
+        computer = Player("Computer", True)
+        game = Game(irl_player, computer, bank)
         bid_amount = game.start_round(deck)
         game.player_turn(deck)
         if irl_player.calculate_score() > 21:
